@@ -39,11 +39,11 @@ async function updateUser(req, res){
     try {
         const userId = req.user._id;
 
-        const { name, password } = req.body
+        const { name, password, address, availability, notification } = req.body
 
         const updatedUser = await User.findByIdAndUpdate(
             userId, 
-            { name, password }
+            { name, password, address, availability, notification}
         )
 
         res.status(200).json({ message: 'User Updated' , succes: true});
@@ -88,8 +88,20 @@ async function deleteUserAdmin(req, res){
        }
 }
 
+async function getOrganizations(req, res){
+    try {
+  
+      const users = await User.find({role: "organization"});
+      res.status(200).json({message: "All blogs", success: true ,users});
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Failed to delete the blog' });
+    }
+}
+
 
 module.exports = {
-    deleteUser, viewUser, updateUser, allUsers, deleteUserAdmin
+    deleteUser, viewUser, updateUser, allUsers, deleteUserAdmin, getOrganizations
 };
  

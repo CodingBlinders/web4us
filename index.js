@@ -11,6 +11,8 @@ const CommentRoutes = require("./Routes/CommentRoute");
 const HomeRoutes = require("./Routes/HomeRoute");
 const { MONGO_URL, PORT } = process.env;
 const UserRoutes = require("./Routes/UserRoutes")
+const EventRoute = require("./Routes/EventRoute")
+const ApplicationRoute = require("./Routes/ApplicationRoute")
 
 app.use(cors({
     origin: ['http://localhost:3000'],
@@ -19,7 +21,7 @@ app.use(cors({
 }));
 
 mongoose
-  .connect("mongodb+srv://dhananjayaaps:IVoGhCR1kyYB8fQz@cluster0.qcsy9ux.mongodb.net/?retryWrites=true&w=majority", {
+  .connect("mongodb+srv://dhananjayaaps:Jc9F6GUbKXs0ysbL@cluster0.hycaxfx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 30000
@@ -43,3 +45,5 @@ app.use('/home', HomeRoutes);
 app.use("/uploads", express.static("uploads"));
 app.use("/user", UserRoutes);
 app.use("/comment", CommentRoutes);
+app.use("/event", EventRoute)
+app.use("/application", ApplicationRoute)
