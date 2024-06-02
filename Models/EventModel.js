@@ -19,11 +19,11 @@ const BlogSchema = new mongoose.Schema({
         required: true,
     },
     startDate: {
-        type: String,
+        type: Date,
         required: true,
     },
     endDate: {
-        type: String,
+        type: Date,
         required: true,
     },
     location: {
@@ -60,6 +60,10 @@ const BlogSchema = new mongoose.Schema({
     photoUrl: {
         type: String,
         required: true,
+    },
+    remainingDates: {
+        default: 0,
+        type: Number
     },
 });
 

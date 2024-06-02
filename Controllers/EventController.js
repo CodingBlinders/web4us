@@ -38,6 +38,12 @@ async function createEvent(req, res) {
 async function getEvents(req, res) {
     try {
         const events = await Event.find();
+        // sort using startDate
+        events.sort((a, b) => a.startDate - b.startDate);
+        //for all events make remainingDates using startDate - current date
+        events.forEach(event => {
+            event.remainingDays = Math.ceil((event.startDate - new Date()) / (1000 * 60 * 60 * 24));
+        });
         res.json(events);
     } catch (error) {
         console.error(error);
@@ -48,8 +54,10 @@ async function getEvents(req, res) {
 //search event by id
 
 async function getEventById(req, res) {
+    console.log(req.params);
     try {
-        const event = await Event.findOne({ _id: req.params.id });
+        console.log(req.params);
+        const event = await Event.findOne({ _id: req.params.eventId });
         res.json(event);
     } catch (error) {
         console.error(error);

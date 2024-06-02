@@ -92,7 +92,7 @@ async function getOrganizations(req, res){
     try {
   
       const users = await User.find({role: "organization"});
-      res.status(200).json({message: "All blogs", success: true ,users});
+      res.status(200).json({message: "All orgs", success: true ,users});
   
     } catch (error) {
       console.error(error);

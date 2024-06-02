@@ -35,6 +35,7 @@ const userSchema = new mongoose.Schema({
     default: "user",
     required: true,
   },
+  token: {}
 });
 
 userSchema.pre("save", async function (next) {
